@@ -1,1 +1,126 @@
-/* You can add global styles to this file, and also import other style files */
+
+/* Basic reset */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #111318;
+  color: #f0eee8;
+  line-height: 1.6;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 8%;
+  border-bottom: 1px solid #30333b;
+}
+
+header a {
+  color: inherit;
+  text-decoration: none;
+}
+
+header > a {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav a {
+  color: #b9bbc5;
+}
+
+nav a:hover {
+  color: #ffffff;
+}
+
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+section {
+  padding: 5rem 0;
+  border-bottom: 1px solid #30333b;
+  scroll-margin-top: 1rem;
+}
+
+#home {
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+}
+
+h1 {
+  max-width: 750px;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+section > p {
+  color: #b9bbc5;
+}
+
+button {
+  padding: 0.7rem 1rem;
+  border: 1px solid #777d8c;
+  border-radius: 6px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #30333b;
+}
+
+footer {
+  padding: 2rem;
+  text-align: center;
+  color: #b9bbc5;
+}
+
+@media (max-width: 600px) {
+  header {
+    align-items: flex-start;
+    gap: 1rem;
+    flex-direction: column;
+    padding: 1rem 5%;
+  }
+
+  nav {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  main {
+    padding: 0 1.25rem;
+  }
+
+  section {
+    padding: 3.5rem 0;
+  }
+
+  #home {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}

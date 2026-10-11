@@ -1,0 +1,7 @@
+<p>{{ locationName() }}</p>
+
+@if (locationName()) {
+    <button (click)="locationSelected.emit(locationName())">
+        Select location
+    </button>
+}
