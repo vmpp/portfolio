@@ -1,21 +1,31 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, signal, computed } from '@angular/core';
 import { Map } from './map/map';
+import { Location } from './location/location';
+import { MapLocation } from './map/map-location';
 
 @Component({
-  imports: [RouterOutlet, Map],
+  imports: [Location, Map],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
 })
 export class App {
-  protected readonly title = signal('Vítor');
+  readonly locations = signal<MapLocation[]>([
+    { name: 'Home', x: 17, y: 18 },
+    { name: 'University', x: 27, y: 50 },
+    { name: 'Polarising', x: 44, y: 40 },
+    { name: 'Belron', x: 56, y: 28 }
+  ]);
+  readonly visitedLocations = signal<Set<string>>(new Set());
+  readonly totalLocations = computed(() => this.locations().length);
 
-  changeTitle(): void {
-    this.title.set('Vítor');
-  }
-
-  onLocationSelected(location: string): void {
-    this.title.set(location);
+  onLocationExplored(location: string): void {
+    if (this.locations().some(l => l.name === location)) {
+      this.visitedLocations.update(current => {
+        const updated = new Set(current);
+        updated.add(location);
+        return updated;
+      });
+    }
   }
 }
