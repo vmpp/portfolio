@@ -1,4 +1,5 @@
-import { Component, input, output } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { MapLocation } from './map-location';
 
 @Component({
   imports: [],
@@ -7,6 +8,6 @@ import { Component, input, output } from '@angular/core';
   templateUrl: './map.html',
 })
 export class Map {
-  readonly locationName = input<string>();
-  readonly locationSelected = output<string>();
+  readonly locations = input.required<MapLocation[]>();
+  readonly visitedLocations = input.required<Set<string>>();
 }

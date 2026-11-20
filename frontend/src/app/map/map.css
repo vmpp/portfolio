@@ -1,0 +1,131 @@
+#container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+#terrain {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  background-image: url('/images/map.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#clouds {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  pointer-events: none;
+  overflow: hidden;
+}
+
+#clouds::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+
+  width: 200%;
+  height: 100%;
+
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(255, 255, 255, 0.18), transparent 10%),
+    radial-gradient(ellipse at 50% 1%, rgba(255, 255, 255, 0.22), transparent 45%),
+    radial-gradient(ellipse at 80% 90%, rgba(255, 255, 255, 0.25), transparent 20%);
+
+  background-size: 50% 100%;
+  filter: blur(18px);
+
+  animation: drift-clouds 10s linear infinite;
+}
+
+@keyframes drift-clouds {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+#locations {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.marker {
+  position: absolute;
+  transform: translateY(-50%);
+}
+
+.marker a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #f0e6c8;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.marker-dot {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+
+  background: #d8b66a;
+  border: 2px solid #fff0c2;
+  border-radius: 50%;
+
+  box-shadow: 0 0 8px rgba(216, 182, 106, 0.7);
+
+  transition: transform 180ms ease, background-color 180ms ease;
+}
+
+.marker-label {
+  margin-left: 12px;
+  padding: 4px 8px;
+  background: rgba(20, 24, 20, 0.8);
+  border-radius: 4px;
+
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+.marker a:hover .marker-dot {
+  background: #fff0c2;
+  transform: translate(-50%, -50%) scale(1.3);
+}
+
+.marker a:hover .marker-label {
+  background: #d8b66a;
+  color: #202319;
+}
+
+.marker a:focus-visible {
+  outline: 2px solid #fff0c2;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.marker.explored .marker-dot {
+  background: #8b967b;
+  border-color: #c1c9ad;
+  box-shadow: none;
+}
+
+.marker.explored .marker-label {
+  opacity: 0.65;
+}

@@ -1,7 +1,20 @@
-<p>{{ locationName() }}</p>
 
-@if (locationName()) {
-    <button (click)="locationSelected.emit(locationName())">
-        Select location
-    </button>
-}
+<div id="container">
+    <div id="terrain"></div>
+
+    <div id="clouds"></div>
+
+    <div id="locations">
+        @for (item of locations(); track item.name) {
+            <div class="marker"
+                [class.explored]="visitedLocations().has(item.name)"
+                [style.left.%]="item.x"
+                [style.top.%]="item.y">
+                <a [href]="'#' + item.name">
+                    <span class="marker-dot"></span>
+                    <span class="marker-label">{{ item.name }}</span>
+                </a>
+            </div>
+        }
+    </div>
+</div>

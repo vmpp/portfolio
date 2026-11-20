@@ -23,12 +23,19 @@
     <p>Explore the different chapters of my story.</p>
 
     <app-map
-      locationName="Polarising"
-      (locationSelected)="onLocationSelected($event)"
+      [locations]="locations()"
+      [visitedLocations]="visitedLocations()"
     ></app-map>
-
-    <p>Selected chapter: {{ title() }}</p>
   </section>
+
+  @for (item of locations(); track item.name) {
+    <section [id]="item.name">
+      <app-location
+        [name]="item.name"
+        (explored)="onLocationExplored($event)"
+      ></app-location>
+    </section>
+  }
 
   <section id="about">
     <h2>Beyond the code</h2>
